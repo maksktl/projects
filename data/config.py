@@ -25,4 +25,4 @@ redis = {
     'encoding': 'utf8'
 }
 
-POSTGRES_URI = f"postgresql://{PGUSER}:{PGPASSWORD}@{ip}/{DATABASE}"
+POSTGRES_URI = f"postgresql://{PGUSER}:{PGPASSWORD}@db/{DATABASE}"
