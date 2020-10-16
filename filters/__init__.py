@@ -1,9 +1,7 @@
 from aiogram import Dispatcher
 
-
-# from .is_admin import AdminFilter
+from .is_admin import IsAdmin
 
 
 def setup(dp: Dispatcher):
-    # dp.filters_factory.bind(AdminFilter)
-    pass
+    dp.filters_factory.bind(IsAdmin)
