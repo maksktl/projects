@@ -1,5 +1,15 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+
+# Уникальная кнопка назад
+def back_button(call_back):
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text="◀️Назад", callback_data=call_back)]
+        ]
+    )
+
+
 # Тип техники
 tech_type = InlineKeyboardMarkup(
     inline_keyboard=[
@@ -24,15 +34,15 @@ excavator_num = InlineKeyboardMarkup(
         [InlineKeyboardButton(text="Э1111", callback_data="exc:Э1111")],
         [InlineKeyboardButton(text="Э2222", callback_data="exc:Э2222")],
         [InlineKeyboardButton(text="Э3333", callback_data="exc:Э3333")],
-            [InlineKeyboardButton(text="◀️Назад", callback_data="start")],
+        [InlineKeyboardButton(text="◀️Назад", callback_data="start")],
     ]
 )
 
 # Список ремонта Бульдозера
 bull_remont_list = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text="Замена тормозной системы", callback_data="bull_remont:1")],
-        [InlineKeyboardButton(text="Замена цепей", callback_data="bull_remont:2")],
+        [InlineKeyboardButton(text="Замена тормозной системы", callback_data="bull_remont:0")],
+        [InlineKeyboardButton(text="Замена цепей", callback_data="bull_remont:1")],
         [InlineKeyboardButton(text="◀️Назад", callback_data="bulldozers")],
 
     ]
@@ -41,8 +51,8 @@ bull_remont_list = InlineKeyboardMarkup(
 # Список ремонта Эксковатора
 exc_remont_list = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text="Замена масла", callback_data="exc_remont:1")],
-        [InlineKeyboardButton(text="Замена детали", callback_data="exc_remont:2")],
+        [InlineKeyboardButton(text="Замена масла", callback_data="exc_remont:0")],
+        [InlineKeyboardButton(text="Замена детали", callback_data="exc_remont:1")],
         [InlineKeyboardButton(text="◀️Назад", callback_data="excavator")],
 
     ]
