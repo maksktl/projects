@@ -34,7 +34,7 @@ async def exc_type(call: types.CallbackQuery, state: FSMContext):
 
 
 @dp.callback_query_handler(text_contains="bull_remont")
-def bull_remont(call: types.CallbackQuery, state: FSMContext):
+async def bull_remont(call: types.CallbackQuery, state: FSMContext):
     remont_type = bull_remont_types[int(call.data.split(':')[1])]
     await state.update_data(remont_type=remont_type)
     await call.message.answer("Пришлите фото до:",
@@ -43,7 +43,7 @@ def bull_remont(call: types.CallbackQuery, state: FSMContext):
 
 
 @dp.callback_query_handler(text_contains="bull_remont")
-def bull_remont(call: types.CallbackQuery, state: FSMContext):
+async def bull_remont(call: types.CallbackQuery, state: FSMContext):
     remont_type = exc_remont_types[int(call.data.split(':')[1])]
     await state.update_data(remont_type=remont_type)
     await call.message.answer("Пришлите фото до:",
