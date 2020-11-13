@@ -22,4 +22,3 @@ def bull_type(call: types.CallbackQuery):
 @dp.callback_query_handler(text_contains="exc:")
 def exc_type(call: types.CallbackQuery):
     await call.message.answer("Выберите ремонт для Эксковатора:", reply_markup=exc_remont_list)
-
