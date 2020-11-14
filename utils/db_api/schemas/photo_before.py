@@ -7,7 +7,7 @@ class PhotoBefore(BaseModel):
     __tablename__ = 'photos_before'
     query: sql.Select
 
-    file_id = Column(String(100), primary_key=True)
+    file_id = Column(String(256), primary_key=True)
     user_id = Column(ForeignKey('users.user_id', ondelete='CASCADE'))
     date = Column(DateTime(True), server_default=db.func.now())
     tech_type = Column(String(32))

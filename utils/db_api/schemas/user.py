@@ -35,4 +35,4 @@ class User(BaseModel):
     @staticmethod
     async def add_photo_after(user_id: int, count):
         user = await User.get(user_id)
-        await user.update(total_after=(user.total_before + count)).apply()
+        await user.update(total_after=(user.total_after + count)).apply()
