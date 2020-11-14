@@ -26,3 +26,13 @@ class User(BaseModel):
                 total_after=0
             )
             return new_user
+
+    @staticmethod
+    async def add_photo_before(user_id: int, count):
+        user = await User.get(user_id)
+        await user.update(total_before=(user.total_before + count)).apply()
+
+    @staticmethod
+    async def add_photo_after(user_id: int, count):
+        user = await User.get(user_id)
+        await user.update(total_after=(user.total_before + count)).apply()

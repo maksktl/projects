@@ -51,6 +51,8 @@ async def upload_after(message: types.Message, state: FSMContext, user: User):
                                    info.get('photo_before'))
     await PhotoAfter.create_photo(user.user_id, info.get('tech'), info.get('number'), info.get('remont_type'),
                                    info.get('photo_after'))
+    await User.add_photo_before(user.user_id, len(info.get('photo_before')))
+    await User.add_photo_after(user.user_id, len(info.get('photo_after')))
     await state.reset_state(with_data=True)
     await message.answer("✅ Вы успешно загрузили фото до/после!", reply_markup=types.ReplyKeyboardRemove())
     await message.answer("Нажмите /start для того чтобы перейти в главное меню.")
