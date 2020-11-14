@@ -8,7 +8,7 @@ class PhotoAfter(BaseModel):
     query: sql.Select
 
     file_id = Column(String(100), primary_key=True)
-    username = Column(ForeignKey('users.user_id', ondelete='CASCADE'))
+    user_id = Column(ForeignKey('users.user_id', ondelete='CASCADE'))
     date = Column(DateTime(True), server_default=db.func.now())
     tech_type = Column(String(32))
     tech_number = Column(String(32))
