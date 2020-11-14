@@ -1,4 +1,7 @@
 async def on_startup(dp):
+    from utils.db_api import db_gino
+    await db_gino.on_startup(dp)
+
     import filters
     import middlewares
     filters.setup(dp)

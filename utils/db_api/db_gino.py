@@ -1,11 +1,12 @@
 from typing import List
 
+import sqlalchemy as sa
 from aiogram import Dispatcher
 from gino import Gino
-import sqlalchemy as sa
+from gino.schema import GinoSchemaVisitor
 from sqlalchemy import Column, DateTime
 
-from data import config
+from data.config import POSTGRES_USER, POSTGRES_PASSWORD, PG_HOST, POSTGRES_DB
 
 db = Gino()
 
@@ -25,15 +26,10 @@ class BaseModel(db.Model):
         return f"<{model} {values_str}>"
 
 
-class TimedBaseModel(BaseModel):
-    __abstract__ = True
-
-    created_at = Column(DateTime(True), server_default=db.func.now())
-    updated_at = Column(DateTime(True),
-                        default=db.func.now(),
-                        onupdate=db.func.now(),
-                        server_default=db.func.now())
-
-
 async def on_startup(dispatcher: Dispatcher):
-    await db.set_bind(config.POSTGRES_URI)
+    await db.set_bind(f'postgresql+asyncpg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{PG_HOST}/{POSTGRES_DB}')
+
+    # Create tables
+    db.gino: GinoSchemaVisitor
+    await db.gino.drop_all()  # Drop the db
+    await db.gino.create_all()

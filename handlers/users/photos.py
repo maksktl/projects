@@ -4,6 +4,9 @@ from aiogram.dispatcher import FSMContext
 from keyboards.default.keyboards import done_button
 from loader import dp
 from states.user_state import UserStep
+from utils.db_api.schemas.photo_after import PhotoAfter
+from utils.db_api.schemas.photo_before import PhotoBefore
+from utils.db_api.schemas.user import User
 
 
 @dp.message_handler(content_types=types.ContentTypes.PHOTO, state=UserStep.before)
@@ -36,13 +39,18 @@ async def upload_before(message: types.Message, state: FSMContext):
 
 
 @dp.message_handler(text="✅ Загрузить", state=UserStep.after)
-async def upload_after(message: types.Message, state: FSMContext):
+async def upload_after(message: types.Message, state: FSMContext, user: User):
     data = (await state.get_data()).get('photo_after')
     if data is None or data == []:
         await message.answer("⚠️Вы не загрузили фото!")
         return
 
     # TODO: загрузка всего в базу данных
+    info = (await state.get_data())
+    await PhotoBefore.create_photo(user.user_id, info.get('tech'), info.get('number'), info.get('remont_type'),
+                                   info.get('photo_before'))
+    await PhotoAfter.create_photo(user.user_id, info.get('tech'), info.get('number'), info.get('remont_type'),
+                                   info.get('photo_after'))
     await state.reset_state(with_data=True)
     await message.answer("✅ Вы успешно загрузили фото до/после!", reply_markup=types.ReplyKeyboardRemove())
     await message.answer("Нажмите /start для того чтобы перейти в главное меню.")
