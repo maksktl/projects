@@ -1,5 +1,6 @@
 from aiogram import types
 from aiogram.dispatcher import FSMContext
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from keyboards.default.keyboards import done_button
 from loader import dp
@@ -55,4 +56,6 @@ async def upload_after(message: types.Message, state: FSMContext, user: User):
     await User.add_photo_after(user.user_id, len(info.get('photo_after')))
     await state.reset_state(with_data=True)
     await message.answer("✅ Вы успешно загрузили фото до/после!", reply_markup=types.ReplyKeyboardRemove())
-    await message.answer("Нажмите /start для того чтобы перейти в главное меню.")
+    await message.answer("Нажмите на главное меню чтобы загрузить фото еще раз.", reply_markup=InlineKeyboardMarkup(
+        inline_keyboard=[[InlineKeyboardButton(text="🏠 Главное меню", callback_data="start")]]
+    ))

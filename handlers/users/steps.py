@@ -2,6 +2,7 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 
 from data.steps_data import bull_remont_types, exc_remont_types
+from handlers.users.start import cq_start
 from keyboards.default.keyboards import done_button
 from keyboards.inline.keyboards import bulldozer_num, excavator_num, exc_remont_list, bull_remont_list, back_button
 from loader import dp, bot
@@ -22,6 +23,11 @@ async def excavator(call: types.CallbackQuery, state: FSMContext):
 
 @dp.callback_query_handler(text_contains="bull:", state='*')
 async def bull_type(call: types.CallbackQuery, state: FSMContext):
+    tech = (await state.get_data()).get('tech')
+    if tech is None or tech != "Бульдозер":
+        await state.reset_state(with_data=True)
+        await cq_start(call)
+        return
     await state.reset_state(with_data=False)
     number = call.data.split(":")[1]
     await state.update_data(number=number)
@@ -30,6 +36,12 @@ async def bull_type(call: types.CallbackQuery, state: FSMContext):
 
 @dp.callback_query_handler(text_contains="exc:", state='*')
 async def exc_type(call: types.CallbackQuery, state: FSMContext):
+    tech = (await state.get_data()).get('tech')
+    if tech is None or tech != "Эксковатор":
+        await state.reset_state(with_data=True)
+        await cq_start(call)
+        return
+
     await state.reset_state(with_data=False)
     number = call.data.split(":")[1]
     await state.update_data(number=number)
@@ -38,6 +50,12 @@ async def exc_type(call: types.CallbackQuery, state: FSMContext):
 
 @dp.callback_query_handler(text_contains="bull_remont")
 async def bull_remont(call: types.CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    if data.get('tech') is None or data.get('tech') != "Бульдозер" or data.get('number')[0] != 'Б':
+        await state.reset_state(with_data=True)
+        await cq_start(call)
+        return
+
     remont_type = bull_remont_types[int(call.data.split(':')[1])]
     await state.update_data(remont_type=remont_type)
     await call.message.answer("📸 Пришлите фото до, затем нажмите на кнопку ✅Загрузить", reply_markup=done_button)
@@ -46,6 +64,12 @@ async def bull_remont(call: types.CallbackQuery, state: FSMContext):
 
 @dp.callback_query_handler(text_contains="exc_remont")
 async def exc_remont(call: types.CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    if data.get('tech') is None or data.get('tech') != "Эксковатор" or data.get('number')[0] != 'Э':
+        await state.reset_state(with_data=True)
+        await cq_start(call)
+        return
+
     remont_type = exc_remont_types[int(call.data.split(':')[1])]
     await state.update_data(remont_type=remont_type)
     await call.message.answer("📸 Пришлите фото до, затем нажмите на кнопку ✅Загрузить", reply_markup=done_button)

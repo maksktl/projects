@@ -31,5 +31,5 @@ async def on_startup(dispatcher: Dispatcher):
 
     # Create tables
     db.gino: GinoSchemaVisitor
-    await db.gino.drop_all()  # Drop the db
+    # await db.gino.drop_all()  # Drop the db
     await db.gino.create_all()
