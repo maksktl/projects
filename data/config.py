@@ -20,3 +20,9 @@ redis = {
     'address': (ip, 6379),
     'encoding': 'utf8'
 }
+
+#Email zone
+E_LOGIN = str(os.getenv("E_LOGIN"))
+E_PASSWORD = str(os.getenv("E_PASSWORD"))
+SMTP_SERVER = str(os.getenv("SMTP_SERVER"))
+SMTP_PORT = int(os.getenv("SMTP_PORT"))
