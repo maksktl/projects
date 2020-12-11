@@ -20,3 +20,10 @@ async def select_product(call: types.CallbackQuery, state: FSMContext):
     await state.update_data(file=county_file[country])
     await State.product_name.set()
     await call.message.answer("Введите название товара:")
+
+
+@dp.message_handler(state=State.product_name)
+async def enter_link(message: types.Message, state: FSMContext):
+    await state.update_data(product=message.text)
+    await State.link.set()
+    await message.answer("Введите ссылку на товар:")
