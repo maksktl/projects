@@ -11,7 +11,7 @@ async def on_startup(dp):
     email_auth.on_startup()
 
 
-async def on_shutdown():
+async def on_shutdown(dp):
     from utils.e_mail import email_auth
     email_auth.on_shutdown()
 
