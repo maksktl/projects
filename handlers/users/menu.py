@@ -27,3 +27,10 @@ async def enter_link(message: types.Message, state: FSMContext):
     await state.update_data(product=message.text)
     await State.link.set()
     await message.answer("Введите ссылку на товар:")
+
+
+@dp.message_handler(state=State.link)
+async def enter_email(message: types.Message, state: FSMContext):
+    await state.update_data(link=message.text)
+    await State.email.set()
+    await message.answer("Введите почту получателя:")
