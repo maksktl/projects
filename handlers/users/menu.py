@@ -41,7 +41,7 @@ async def enter_email(message: types.Message, state: FSMContext):
 
 @dp.message_handler(state=State.email)
 async def send_mail(message: types.Message, state: FSMContext):
-    text = u""
+    text = ""
     data = await state.get_data()
     file = str(data.get("file"))
     product = data.get("product")
