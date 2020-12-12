@@ -1,7 +1,7 @@
 from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
 
-from keyboards.inline.keyboards import start_keyboard
+from keyboards.default.keyboards import start_keyboard
 from loader import dp
 
 
