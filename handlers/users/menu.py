@@ -25,6 +25,7 @@ async def select_product(message: types.Message, state: FSMContext):
     country = message.text
     if country not in county_file:
         await message.answer("Вы отправили страну, которой нет в списке")
+        return
     await state.update_data(file=county_file[country])
     await State.product_name.set()
     await message.answer("📃 Введите название товара:", reply_markup=back_button)
