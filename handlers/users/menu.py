@@ -50,7 +50,6 @@ async def send_mail(message: types.Message, state: FSMContext):
         for line in fl:
             text += line.encode('ascii', 'ignore').decode('ascii')
     text = text.format(product, link)
-    # text = "<h1> {0} <\h1>  <h2> {1} <\h2>".format(product, link).encode('utf-8')
     send_email(message.text, "OLX товар", text)
 
     await state.reset_state(with_data=True)
