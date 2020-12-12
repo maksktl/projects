@@ -5,6 +5,7 @@ from data.relations import county_file
 from keyboards.inline.keyboards import country_keyboard
 from loader import dp
 from states.states import State
+from utils.e_mail.email_commands import send_email
 
 
 @dp.callback_query_handler(text="send")
@@ -34,3 +35,20 @@ async def enter_email(message: types.Message, state: FSMContext):
     await state.update_data(link=message.text)
     await State.email.set()
     await message.answer("Введите почту получателя:")
+
+
+@dp.message_handler(state=State.email)
+async def send_mail(message: types.Message, state: FSMContext):
+    text = u""
+    data = await state.get_data()
+    file = str(data.get("file"))
+    product = data.get("product")
+    link = data.get("link")
+    with open(file) as fl:
+        for line in fl:
+            text += line.encode('ascii', 'ignore').decode('ascii')
+    text = text.format(product, link)
+    # text = "<h1> {0} <\h1>  <h2> {1} <\h2>".format(product, link).encode('utf-8')
+    send_email(message.text, "OLX товар", text)
+
+    await state.reset_state(with_data=True)

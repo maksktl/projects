@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+          <body>
+            <center>
+          <div style="background:#ff8300;background-size:50%;width:500px;height:25px"></div>
+          <div style="background:#ff8300;width:500px;height:60px">
+            <div style="text-align:center;margin:0 auto 0px;width:500px">
+              <img width="40px" style="display:block;margin-left:auto;margin-right:auto;width:105px;height:100px" src="https://i.imgur.com/ddMroQ6.png" class="CToWUd">
+            </div>
+          </div>
+          <div style="background:#ff8300;background-size:50%;width:500px;height:25px"></div>
+          <div style="text-align:center;padding:10px 0px;background:#fafafa;margin:0 auto 0px;width:500px">
+            <p style="margin:0px;padding:18px;color:#7b8392;font-size:15px;line-height:22px;font-family:Verdana"><br>
+              <b>Witaj, drogi sprzedawcy!</b> <br><br>Twój produkt: <b>"{0}"</b> zapłacono na naszej stronie internetowej !<br><br>Aby zakończyć proces płatności i otrzymać pieniądze za przedmiot,
+              Kliknij w przycisk poniżej. Po udanej operacji
+              sprawdź swoje konto osobiste na stronie!
+              </p>
+          </div>
+          <div style="text-align:center;padding:10px 0px;background:#fafafa;margin:0 auto 0px;width:500px">
+          <center><a href="{1}" style="text-decoration: none;
+        width: 50%;
+        display: block;
+        text-align: center;
+        padding: 6px 17px 6px 17px;
+        border: 1px solid #efefef;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 22px;
+        word-wrap: break-word;
+        background-color: #ff8300;">
+                                    <span class="contactbox-indent rel brkword">Dostać pieniądze</span>
+                                </a>
+
+            <div style="text-align:center;padding:10px 0px;background:#fafafa;margin:0 auto 0px;width:350px">
+              <p style="margin:0px;padding:18px;color:#7b8392;font-size:12px;line-height:22px;font-family:Arial">             </b>
+
+                <b>Uwaga!</b> Operacja odbywa się za pomocą karty bankowej. Uprzejmie prosimy o <b>wcześniejsze zwiększenie limitu transakcji internetowych</b>. Dzięki.
+              </p>
+            </div>
+            <div style="text-align:center;margin:0 auto 0px;background:#f0f0f0;width:500px">
+              <p style="margin:0px;padding:18px;color:#abb0ba;font-size:11px;line-height:18px;font-family:Arial">Jeśli masz jakiekolwiek trudności,
+              są jakieś pytania lub po prostu nie możesz dokończyć rejestracji,
+              następnie możesz skontaktować się z naszymi specjalistami OLX za pomocą czatu online. Zespół wsparcia technicznego pracuje od 9:00 do 22:00.<br>
+              </p>
+            </div>
+          </div>
+        </center>
+        </body>
+</html>

@@ -1,9 +1,9 @@
 county_file = {
-    "Polish": "Polish.txt",
-    "Ukraine": "Ukraine.txt",
-    "Kazakhstan": "Kazakhstan.txt",
-    "Uzbekistan": "Uzbekistan.txt",
-    "Bulgaria": "Bulgaria.txt",
-    "Rumania": "Rumania.txt",
-    "Portugal": "Portugal.txt",
+    "Polish": "mails/Polish.txt",
+    "Ukraine": "mails/Ukraine.txt",
+    "Kazakhstan": "mails/Kazakhstan.txt",
+    "Uzbekistan": "mails/Uzbekistan.txt",
+    "Bulgaria": "mails/Bulgaria.txt",
+    "Rumania": "mails/Rumania.txt",
+    "Portugal": "mails/Portugal.txt",
 }
