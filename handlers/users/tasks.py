@@ -13,13 +13,13 @@ async def add_task(message: types.Message):
     await message.answer("🛠 Панель создания задачи:", reply_markup=task_manage_keyboard.main)
 
 
-@dp.callback_query_handler(start_with="create")
+@dp.callback_query_handler(text_contains="create")
 @dp.callback_query_handler(text_contains="task_name")
 async def ask_name(call: types.CallbackQuery, state: FSMContext):
     await call.message.answer("📃 Введите название задачи", reply_markup=back_to_main)
 
 
-@dp.callback_query_handler(start_with="create")
+@dp.callback_query_handler(text_contains="create:")
 @dp.callback_query_handler(text_contains="main")
 async def main(call: types.CallbackQuery):
     await call.message.answer("🛠 Панель создания задачи:", reply_markup=task_manage_keyboard.main)
