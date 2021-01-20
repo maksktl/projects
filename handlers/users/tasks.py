@@ -10,7 +10,7 @@ from keyboards.inline import task_manage_keyboard
 
 @dp.message_handler(Command("add_new"))
 async def add_task(message: types.Message):
-    await message.answer("🛠 Панель создания задачи:", reply_markup=task_manage_keyboard.main)
+    await message.answer("🛠 Панель создания задачи:", reply_markup=(await task_manage_keyboard.main()))
 
 
 @dp.callback_query_handler(text_contains="create")
@@ -22,4 +22,4 @@ async def ask_name(call: types.CallbackQuery, state: FSMContext):
 @dp.callback_query_handler(text_contains="create:")
 @dp.callback_query_handler(text_contains="main")
 async def main(call: types.CallbackQuery):
-    await call.message.answer("🛠 Панель создания задачи:", reply_markup=task_manage_keyboard.main)
+    await call.message.answer("🛠 Панель создания задачи:", reply_markup=(await task_manage_keyboard.main()))

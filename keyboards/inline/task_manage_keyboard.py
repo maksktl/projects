@@ -1,21 +1,24 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-main = InlineKeyboardMarkup(
-    inline_keyboard=[
-        [InlineKeyboardButton(text="📃 Название задачи", callback_data="create:task_name")],
-        [InlineKeyboardButton(text="👥 Люди", callback_data="create:people")],
-        [InlineKeyboardButton(text="📍 Местоположение", callback_data="create:location")],
-        [
-            InlineKeyboardButton(text="📆 День", callback_data="create:date"),
-            InlineKeyboardButton(text="⌚️ Время", callback_data="create:time"),
-        ],
-    ]
-)
+
+async def main(task_name="📃 Название задачи", people="👥 Люди", location="📍 Местоположение", date="📆 День",
+               time="⌚️ Время"):
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text=task_name, callback_data="create:task_name")],
+            [InlineKeyboardButton(text=people, callback_data="create:people")],
+            [InlineKeyboardButton(text=location, callback_data="create:location")],
+            [
+                InlineKeyboardButton(text=date, callback_data="create:date"),
+                InlineKeyboardButton(text=time, callback_data="create:time"),
+            ],
+            [InlineKeyboardButton(text="✅ Создать", callback_data="create:create")],
+
+        ]
+    )
 
 back_to_main = InlineKeyboardMarkup(
     inline_keyboard=[
         [InlineKeyboardButton(text="◀️ Назад", callback_data="create:main")]
     ]
 )
-
-
