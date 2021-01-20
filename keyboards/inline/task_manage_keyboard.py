@@ -3,6 +3,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 main = InlineKeyboardMarkup(
     inline_keyboard=[
         [InlineKeyboardButton(text="📃 Название задачи", callback_data="create:task_name")],
+        [InlineKeyboardButton(text="👥 Люди", callback_data="create:people")],
         [InlineKeyboardButton(text="📍 Местоположение", callback_data="create:location")],
         [
             InlineKeyboardButton(text="📆 День", callback_data="create:date"),
