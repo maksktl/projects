@@ -10,7 +10,7 @@ from keyboards.inline import task_manage_keyboard
 
 @dp.message_handler(Command("add_new"))
 async def add_task(message: types.Message):
-    await message.answer("🛠 Панель создания задачи:", reply_markup=(await task_manage_keyboard.main()))
+    await message.answer("🛠 Нажмите на нужную кнопку, чтобы задать необходимую конфигурацию:", reply_markup=(await task_manage_keyboard.main()))
 
 
 @dp.callback_query_handler(text_contains="create")
