@@ -2,6 +2,7 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Command
 
+from handlers.users.start import bot_start
 from keyboards.inline import task_manage_keyboard
 from keyboards.inline.task_manage_keyboard import back_to_main
 from loader import dp
@@ -13,6 +14,12 @@ async def add_task(message: types.Message, state: FSMContext):
     data = await state.get_data()
     await message.answer("🛠 Нажмите на нужную кнопку, чтобы задать необходимую конфигурацию:",
                          reply_markup=(await task_manage_keyboard.main(**data)))
+
+
+@dp.callback_query_handler(state='*', text_contains="create:cancel")
+async def cancel(call: types.CallbackQuery, state: FSMContext):
+    await state.reset_state(with_data=True)
+    await bot_start(call.message)
 
 
 @dp.callback_query_handler(text_contains="create:task_name")

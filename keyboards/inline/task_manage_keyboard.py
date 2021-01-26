@@ -14,6 +14,7 @@ async def main(task_name="Название задачи", task_description="Оп
                 InlineKeyboardButton(text=f"⌚️ {time}", callback_data="create:time"),
             ],
             [InlineKeyboardButton(text="✅ Создать", callback_data="create:create")],
+            [InlineKeyboardButton(text="🚫 Отменить", callback_data="create:cancel")],
 
         ]
     )
