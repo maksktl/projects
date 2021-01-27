@@ -34,6 +34,13 @@ async def ask_task_description(call: types.CallbackQuery, state: FSMContext):
     await TaskState.description.set()
 
 
+@dp.callback_query_handler(text_contains="create:people")
+async def ask_people(call: types.CallbackQuery, state: FSMContext):
+    await call.message.answer("👥 Каждого человека вводите на новой строке "
+                              "<i>(Использовать перевод строки или Shift+Enter)</i>:", reply_markup=back_to_main)
+    await TaskState.people.set()
+
+
 @dp.message_handler(state=TaskState.description)
 async def set_task_description(message: types.Message, state: FSMContext):
     task_description = message.text
@@ -46,6 +53,14 @@ async def set_task_description(message: types.Message, state: FSMContext):
 async def set_name(message: types.Message, state: FSMContext):
     task_name = message.text
     await state.update_data(task_name=task_name)
+    await state.reset_state(with_data=False)
+    await add_task(message, state)
+
+
+@dp.message_handler(state=TaskState.people)
+async def set_people(message: types.Message, state: FSMContext):
+    people = ', '.join([f"{person}".replace(',', '') for person in message.text.split('\n') if len(person) > 0])
+    await state.update_data(people=people)
     await state.reset_state(with_data=False)
     await add_task(message, state)
 
